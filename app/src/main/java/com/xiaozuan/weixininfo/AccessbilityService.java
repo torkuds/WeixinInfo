@@ -108,10 +108,17 @@ public class AccessbilityService extends AccessibilityService {
                 address = nodeArea.get(0).getText().toString();
             }
 
+            Log.i("微信辅助", nick + "<--详细资料");
+
             try {
                 fw.append(++index + "、" + "昵称：" + nick + ", 性别：" + gender + ", 地区：" + address + "\r\n");
                 fw.flush();
             } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             performGlobalAction(GLOBAL_ACTION_BACK);
@@ -122,6 +129,11 @@ public class AccessbilityService extends AccessibilityService {
         if (infosByViewId != null && infosByViewId.size() > 0 && root.findAccessibilityNodeInfosByText("朋友圈").size() == 0
                 && root.findAccessibilityNodeInfosByText("登录").size() == 0){
 
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 //            AccessibilityNodeInfo rootNode = getRootInActiveWindow();
 //            List<AccessibilityNodeInfo> nodeInfos = rootNode.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/ht");
             AccessibilityNodeInfo info = infosByViewId.get(0);
@@ -146,8 +158,6 @@ public class AccessbilityService extends AccessibilityService {
                     if (nodeInfo != null && "android.widget.TextView".equals(nodeInfo.getClassName().toString()) && eventType != AccessibilityEvent.TYPE_VIEW_CLICKED){
                         nodeInfo.getParent().performAction(AccessibilityNodeInfo.ACTION_CLICK);
                         Log.i("微信辅助", nodeInfo.getText().toString());
-
-
                     }
                 }
             }
