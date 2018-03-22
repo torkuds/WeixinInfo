@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">WeixinInfo</string>
+    <string name="app_name">微信插件</string>
     <string name="my_accessibility_description">微信获取联系人信息</string>
 </resources>
